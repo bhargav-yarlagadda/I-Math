@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <>
             <Toolbar isEraser={isEraser} setReset={setReset} setBrushStroke={setBrushStroke} setBrushColor={setBrushColor} brushColor={brushColor} setIsEraser={setIsEraser} />
-            <Canvas dictOfVars={dictOfVars} reset={reset} setReset={setReset} brushStroke={brushStroke} brushColor={brushColor} isEraser={isEraser} />  
+            <Canvas setResult={setResult} result={result} dictOfVars={dictOfVars} reset={reset} setReset={setReset} brushStroke={brushStroke} brushColor={brushColor} isEraser={isEraser} />  
         </>
     );
 };

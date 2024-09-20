@@ -12,7 +12,7 @@ const Toolbar = ({ setBrushColor, brushColor,isEraser, setBrushStroke, setReset,
                             setBrushColor(item);
                         }}
                         key={index}
-                        className={`w-[30px] cursor-pointer h-[30px] rounded-sm transition ease-in ${brushColor === item ? " border-white rounded-[10px]" : ""}`}
+                        className={`w-[30px] cursor-pointer h-[30px] rounded-sm transition ease-in ${brushColor === item ? " border-white rounded-[15px]" : ""}`}
                         style={{ backgroundColor: item }} // Set the background color
                     ></div>
                 ))}

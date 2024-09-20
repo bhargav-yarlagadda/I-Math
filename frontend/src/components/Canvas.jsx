@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = ({ brushColor, brushStroke, dictOfVars,reset, setReset, isEraser }) => {
+const Canvas = ({ brushColor, brushStroke,result,setResult, dictOfVars,reset, setReset, isEraser }) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
@@ -9,6 +9,7 @@ const Canvas = ({ brushColor, brushStroke, dictOfVars,reset, setReset, isEraser 
 
     const sendData = async ()=>{
         const canvas = canvasRef.current
+   
         if (canvas){
             const response = await axios(
                 {
@@ -21,7 +22,8 @@ const Canvas = ({ brushColor, brushStroke, dictOfVars,reset, setReset, isEraser 
                 }  
             )
             const resp = await response.data
-            console.log(resp)
+            console.log(result)
+            setResult(resp)
         }
     }
 
@@ -91,7 +93,7 @@ const Canvas = ({ brushColor, brushStroke, dictOfVars,reset, setReset, isEraser 
 
     return (
         <div className="w-full h-full">
-            <button className="text-white bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] md:top-7 left-[5%] md:left-10 z-20 "
+            <button className="text-white bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] left-10 z-20 "
             onClick={()=>{
                 sendData()
             }}
