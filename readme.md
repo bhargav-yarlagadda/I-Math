@@ -24,6 +24,7 @@ Clone the project repository using Git, or download the project folder to your l
 git clone https://github.com/your-repository-link.git
 cd your-repository
 
+### to run the server
 # Create a virtual environment named 'venv'
 ```bash
 python -m venv venv
@@ -45,3 +46,5 @@ py main.py
 #after completion deactivate the vitual env
 ```bash
 deactivate
+
+
