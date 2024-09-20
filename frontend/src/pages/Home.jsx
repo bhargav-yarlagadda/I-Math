@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Canvas from "../components/Canvas";
 import Toolbar from "../components/Toolbar";
+
 const Home = () => {
-    const [brushColor,setBrushColor] = useState("white")
-    const [brushStroke,setBrushStroke] = useState(2)
-    const [reset,setReset] = useState(false)
+    const [brushColor, setBrushColor] = useState("white");
+    const [brushStroke, setBrushStroke] = useState(2);
+    const [reset, setReset] = useState(false);
+    const [isEraser, setIsEraser] = useState(false); // State for eraser mode
 
     return (
         <>
-            <Toolbar setReset={setReset} setBrushStroke={setBrushStroke}  setBrushColor={setBrushColor} brushColor={brushColor} />
-            <Canvas reset={reset} setReset={setReset} brushStroke={brushStroke} brushColor={brushColor} />  
+            <Toolbar setReset={setReset} setBrushStroke={setBrushStroke} setBrushColor={setBrushColor} brushColor={brushColor} setIsEraser={setIsEraser} />
+            <Canvas reset={reset} setReset={setReset} brushStroke={brushStroke} brushColor={brushColor} isEraser={isEraser} />  
         </>
     );
 };
