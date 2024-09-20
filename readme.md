@@ -1,16 +1,15 @@
-# FastAPI Backend Setup and Execution
+# Frontend Setup
 
-This guide will help you set up the FastAPI backend project, manage dependencies using a virtual environment, and run the app from scratch.
+1. Clone the repository:
+   ```bash
+   git clone  https://github.com/bhargav-yarlagadda/IMath.git
+   cd frontend
+   npm i 
+   npm run dev
 
-## Prerequisites
 
-Ensure you have the following installed on your system:
+# Backend Setup and Execution
 
-- **Python 3.7+**
-- **pip** (comes with Python)
-- **Git** (optional but recommended for cloning repositories)
-
----
 
 ## Setup Instructions
 
@@ -18,11 +17,9 @@ Follow these steps to set up the backend project and run it.
 
 ### 1. Clone the Repository
 
-Clone the project repository using Git, or download the project folder to your local machine.
 
 ```bash
-git clone https://github.com/your-repository-link.git
-cd your-repository
+ cd backend
 
 ### to run the server
 # Create a virtual environment named 'venv'
