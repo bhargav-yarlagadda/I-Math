@@ -3,8 +3,8 @@ import { SWATCHES } from '../constants/Constants';
 import { LuEraser } from "react-icons/lu";
 const Toolbar = ({ setBrushColor, brushColor,isEraser, setBrushStroke, setReset, setIsEraser }) => {
     return (
-        <div className='flex flex-col md:flex-row text-white bg-gray-950 bg-opacity-90 p-1 backdrop-blur-md absolute top-5 w-[80vw] left-[10%] z-50'>
-            <div className='w-full md:w-1/2 p-3 rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap gap-4 md:flex-row'>
+        <div className='flex flex-col md:flex-row text-white p-1 gap-3 backdrop-blur-md absolute top-5 w-[80vw] left-[10%] z-50'>
+            <div className='w-full sm:w-[300px] xl:w-1/2 p-3 rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap gap-4 md:flex-row'>
                 {SWATCHES.map((item, index) => (
                     <div
                         onClick={() => {
@@ -12,24 +12,24 @@ const Toolbar = ({ setBrushColor, brushColor,isEraser, setBrushStroke, setReset,
                             setBrushColor(item);
                         }}
                         key={index}
-                        className={`w-[30px] cursor-pointer h-[30px] rounded-sm transition ease-in ${brushColor === item ? " border-white rounded-[15px]" : ""}`}
+                        className={`md:w-[30px] w-[15px] h-[15px] cursor-pointer md:h-[30px] rounded-sm transition ease-in ${brushColor === item ? " border-white rounded-[15px]" : ""}`}
                         style={{ backgroundColor: item }} // Set the background color
                     ></div>
                 ))}
             </div>
-            <div className='w-full md:w-1/2 p-3 rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap gap-4 md:flex-row'>
-                <button className='bg-red-600 p-1 rounded-md hover:bg-red-700' onClick={() => {
+            <div className='w-full md:w-1/2 p-3 h-[60px] rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap  md:flex-row'>
+                <button className='bg-red-600 md:text-md md:max-w-[100px] w-[80px] h-[40px] text-sm px-2 py-auto rounded-md hover:bg-red-700' onClick={() => {
                     setReset(true);
                 }}>
                     Reset Canvas
                 </button>
-                <LuEraser className={` p-1 w-[50px] h-[40px] cursor-pointer rounded-md ${isEraser ?"bg-blue-700":""} hover:bg-yellow-700`} onClick={() => {
+                <LuEraser className={` p-1 w-[30px] my-auto h-[30px] md:w-[50px] md:h-[50px] cursor-pointer rounded-md ${isEraser ?"bg-blue-700":""} hover:bg-yellow-700`} onClick={() => {
                     setIsEraser(true); // Enable eraser mode
                     setBrushColor("black"); // Set the stroke color to match the background
                 }}/>
-                <input type="range" min={1} max={32} defaultValue={2} onChange={(e) => {
+                <input type="range"   min={1} max={32} defaultValue={2} onChange={(e) => {
                     setBrushStroke(e.target.value);
-                }} className='h-1 my-auto' />
+                }} className='h-1 my-auto w-[90px] md:w-auto ' />
             </div>
         </div>
     );

@@ -122,7 +122,7 @@ const Canvas = ({ brushColor, brushStroke, result, setResult, dictOfVars, reset,
 
             {/* Render the generated result */}
             {result && (
-                <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic bottom-[30%] left-[1%] w-[200px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
+                <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic top-[10vh] bottom-[20%] left-[5%] md:bottom-[30%] md:left-[3%] w-[200px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
                     <h2>Expression: {result.expr}</h2>
                     <h2>Result: {result.result}</h2>
                 </div>
