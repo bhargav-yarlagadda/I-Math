@@ -1,11 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = ({brushColor,brushStroke}) => {
+const Canvas = ({brushColor,brushStroke,reset,setReset}) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
     const [lastY, setLastY] = useState(0);
 
+    const resetCanvas = ()=>{
+        const canvas = canvasRef.current
+        const context = canvas.getContext('2d');
+            if (context) {
+                context.clearRect(0,0,canvas.width,canvas.height)
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                context.lineCap = "round"; // pen point type
+                
+                context.fillStyle = "black"; // background color
+                context.fillRect(0, 0, canvas.width, canvas.height)
+
+            }
+    }
+    useEffect(()=>{
+        if(reset){
+            resetCanvas()
+            setReset(false)
+        }
+    },[reset])
     useEffect(() => {
         const canvas = canvasRef.current;
         if (canvas) {
