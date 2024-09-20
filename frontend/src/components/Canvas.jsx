@@ -1,31 +1,34 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = ({ brushColor, brushStroke,result,setResult, dictOfVars,reset, setReset, isEraser }) => {
+const Canvas = ({ brushColor, brushStroke, result, setResult, dictOfVars, reset, setReset, isEraser }) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
     const [lastY, setLastY] = useState(0);
+    const [generatedResult, setGeneratedResult] = useState(null); // State to store generated result
 
-    const sendData = async ()=>{
-        const canvas = canvasRef.current
-   
-        if (canvas){
-            const response = await axios(
-                {
-                    method:"POST",
-                    url: `${import.meta.env.VITE_API_URL}/calculate`,
-                    data:{
-                        image:canvas.toDataURL('image/png'),
-                        dict_of_vars :dictOfVars
-                    }
-                }  
-            )
-            const resp = await response.data
-            console.log(result)
-            setResult(resp)
+    const sendData = async () => {
+        const canvas = canvasRef.current;
+
+        if (canvas) {
+            const response = await axios({
+                method: "POST",
+                url: `${import.meta.env.VITE_API_URL}/calculate`,
+                data: {
+                    image: canvas.toDataURL('image/png'),
+                    dict_of_vars: dictOfVars
+                }
+            });
+            const { message, data, status } = response.data; // Destructure response data
+            console.log(response.data);
+            
+            if (status === 'success' && data.length > 0) {
+                setResult(data[0]); // Set the generated result
+            }
+            // You can keep this if needed
         }
-    }
+    };
 
     const resetCanvas = () => {
         const canvas = canvasRef.current;
@@ -36,6 +39,7 @@ const Canvas = ({ brushColor, brushStroke,result,setResult, dictOfVars,reset, se
             canvas.height = window.innerHeight;
             context.fillStyle = "black"; // Background color
             context.fillRect(0, 0, canvas.width, canvas.height);
+            setResult(null)
         }
     };
 
@@ -91,13 +95,22 @@ const Canvas = ({ brushColor, brushStroke,result,setResult, dictOfVars,reset, se
         }
     };
 
+    const clearResponse = () => {
+        setResult(null); // Clear the generated result
+    };
+
     return (
         <div className="w-full h-full">
-            <button className="text-white bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] left-10 z-20 "
-            onClick={()=>{
-                sendData()
-            }}
-            >Generate </button>
+            <button className="text-white text-[14px] bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] left-10 z-20"
+                onClick={sendData}
+            >
+                Generate Response
+            </button>
+            <button className="text-white text-[14px] bg-red-600 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] right-10 z-20"
+                onClick={clearResponse}
+            >
+                Clear Response
+            </button>
             <canvas
                 ref={canvasRef}
                 onMouseDown={startDrawing}
@@ -106,6 +119,14 @@ const Canvas = ({ brushColor, brushStroke,result,setResult, dictOfVars,reset, se
                 onMouseMove={draw}
                 className="w-full h-full absolute top-0 left-0"
             ></canvas>
+
+            {/* Render the generated result */}
+            {result && (
+                <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic bottom-[30%] left-[1%] w-[200px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
+                    <h2>Expression: {result.expr}</h2>
+                    <h2>Result: {result.result}</h2>
+                </div>
+            )}
         </div>
     );
 };
