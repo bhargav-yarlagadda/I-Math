@@ -23,7 +23,7 @@ I-Math is a simple web application built using React.js and FastAPI. It serves a
    ```bash
    git clone  https://github.com/bhargav-yarlagadda/IMath.git
    cd frontend
-   npm i 
+   npm install 
    npm run dev
 
 
