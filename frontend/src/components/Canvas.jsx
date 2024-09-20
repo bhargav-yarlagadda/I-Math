@@ -20,15 +20,7 @@ const Canvas = ({brushColor,brushStroke}) => {
             }
         }
     }, []);
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (canvas) {
-            const context = canvas.getContext('2d');
-            if (context) {
-                context.lineWidth = brushStroke; // Update line size whenever brushStroke changes
-            }
-        }
-    }, [brushStroke]); 
+ 
     const startDrawing = (e) => {
         const canvas = canvasRef.current;
         if (canvas) {
@@ -48,6 +40,7 @@ const Canvas = ({brushColor,brushStroke}) => {
     };
 
     const draw = (e) => {
+        // no need for a use eefect since every this function is executed when mouse moves so need for a useEffect when brush storke and color is changed
         if (!isDrawing) {
             return;
         }
@@ -56,6 +49,7 @@ const Canvas = ({brushColor,brushStroke}) => {
             const context = canvas.getContext('2d');
             if (context) {
                 context.strokeStyle = brushColor;
+                context.lineWidth = brushStroke
                 context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
                 context.stroke();
                 setLastX(e.nativeEvent.offsetX);
