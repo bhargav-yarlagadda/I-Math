@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = () => {
+const Canvas = ({brushColor}) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
@@ -14,7 +14,7 @@ const Canvas = () => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 context.lineCap = "round"; // pen point type
-                context.lineWidth = 3; // line size
+                context.lineWidth = 2; // line size
                 context.fillStyle = "black"; // background color
                 context.fillRect(0, 0, canvas.width, canvas.height); // fill canvas
             }
@@ -47,7 +47,7 @@ const Canvas = () => {
         if (canvas) {
             const context = canvas.getContext('2d');
             if (context) {
-                context.strokeStyle = "white";
+                context.strokeStyle = brushColor;
                 context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
                 context.stroke();
                 setLastX(e.nativeEvent.offsetX);
@@ -57,15 +57,19 @@ const Canvas = () => {
     };
 
     return (
-        <canvas
-            ref={canvasRef}
-            onMouseDown={startDrawing}
-            onMouseOut={stopDrawing}
-            onMouseUp={stopDrawing}
-            onMouseMove={draw}
-            className="w-full h-full absolute top-0 left-0"
-        ></canvas>
+        <div className="w-full h-full">
+           
+            <canvas
+                ref={canvasRef}
+                onMouseDown={startDrawing}
+                onMouseOut={stopDrawing}
+                onMouseUp={stopDrawing}
+                onMouseMove={draw}
+                className="w-full h-full absolute top-0 left-0"
+            ></canvas>
+        </div>
     );
+    
 };
 
 export default Canvas;

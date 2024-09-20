@@ -1,10 +1,23 @@
 import React from 'react'
-import Canvas from './components/Canvas'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import {  MantineProvider } from '@mantine/core';
+import Home from './pages/Home';
+
+
+const paths = [
+{
+    path:"/",
+    element:(
+      <Home/>
+    )
+}
+]
+const browserRouter = createBrowserRouter(paths)
 const App = () => {
   return (
-    <div>
-      <Canvas/>
-    </div>
+    <MantineProvider>
+         <RouterProvider router={browserRouter} ></RouterProvider>
+    </MantineProvider>
   )
 }
 
