@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = ({brushColor}) => {
+const Canvas = ({brushColor,brushStroke}) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
@@ -14,13 +14,21 @@ const Canvas = ({brushColor}) => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 context.lineCap = "round"; // pen point type
-                context.lineWidth = 2; // line size
+                context.lineWidth = 2; // default line size
                 context.fillStyle = "black"; // background color
                 context.fillRect(0, 0, canvas.width, canvas.height); // fill canvas
             }
         }
     }, []);
-
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (canvas) {
+            const context = canvas.getContext('2d');
+            if (context) {
+                context.lineWidth = brushStroke; // Update line size whenever brushStroke changes
+            }
+        }
+    }, [brushStroke]); 
     const startDrawing = (e) => {
         const canvas = canvasRef.current;
         if (canvas) {
