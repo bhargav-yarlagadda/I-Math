@@ -1,10 +1,29 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = ({ brushColor, brushStroke, reset, setReset, isEraser }) => {
+const Canvas = ({ brushColor, brushStroke, dictOfVars,reset, setReset, isEraser }) => {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastX, setLastX] = useState(0);
     const [lastY, setLastY] = useState(0);
+
+    const sendData = async ()=>{
+        const canvas = canvasRef.current
+        if (canvas){
+            const response = await axios(
+                {
+                    method:"POST",
+                    url: `${import.meta.env.VITE_API_URL}/calculate`,
+                    data:{
+                        image:canvas.toDataURL('image/png'),
+                        dict_of_vars :dictOfVars
+                    }
+                }  
+            )
+            const resp = await response.data
+            console.log(resp)
+        }
+    }
 
     const resetCanvas = () => {
         const canvas = canvasRef.current;
@@ -72,6 +91,11 @@ const Canvas = ({ brushColor, brushStroke, reset, setReset, isEraser }) => {
 
     return (
         <div className="w-full h-full">
+            <button className="text-white bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] md:top-7 left-[5%] md:left-10 z-20 "
+            onClick={()=>{
+                sendData()
+            }}
+            >Generate </button>
             <canvas
                 ref={canvasRef}
                 onMouseDown={startDrawing}
