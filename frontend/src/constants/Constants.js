@@ -1,6 +1,6 @@
 const SWATCHES = [
     "#000000",  // black
-    "#ffffff",  // white
+    "#fff",  // white
     "#ee3333",  // red
     "#e64980",  // pink
     "#be4bdb",  // purple

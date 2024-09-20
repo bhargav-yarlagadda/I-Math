@@ -3,7 +3,7 @@ import Canvas from "../components/Canvas";
 import Toolbar from "../components/Toolbar";
 
 const Home = () => {
-    const [brushColor, setBrushColor] = useState("white");
+    const [brushColor, setBrushColor] = useState("#fff");
     const [brushStroke, setBrushStroke] = useState(2);
     const [reset, setReset] = useState(false);
     const [isEraser, setIsEraser] = useState(false); // State for eraser mode
