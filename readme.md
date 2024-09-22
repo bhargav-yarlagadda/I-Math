@@ -42,21 +42,19 @@ Follow these steps to set up the backend project and run it.
 
 ### to run the server
 # Create a virtual environment named 'venv'
-```bash
 python -m venv venv
 
 # Activate the virtual environment
-```bash
+
 .\venv\Scripts\activate
 
-```bash
+
 pip install -r requirements.txt
 
-```bash
+
 pip freeze
 
 #to run the server
-```bash
 py main.py 
 
 #after completion deactivate the vitual env
