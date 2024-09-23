@@ -120,6 +120,7 @@ const Canvas = ({ brushColor, brushStroke, result, setResult, dictOfVars, reset,
                 className="w-full h-full absolute top-0 left-0"
             ></canvas>
 
+
             {/* Render the generated result */}
             {result && (
                 <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic top-[30vh] bottom-[20%] left-[5%] md:bottom-[30%] md:left-[3%] w-[200px] md:w-[300px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
