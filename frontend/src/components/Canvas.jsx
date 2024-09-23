@@ -101,12 +101,12 @@ const Canvas = ({ brushColor, brushStroke, result, setResult, dictOfVars, reset,
 
     return (
         <div className="w-full h-full">
-            <button className="text-white text-[14px] bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] left-10 z-20"
+            <button className="text-white text-[14px] bg-blue-900 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] left-0 sm:left-10 z-20"
                 onClick={sendData}
             >
                 Generate Response
             </button>
-            <button className="text-white text-[14px] bg-red-600 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] right-10 z-20"
+            <button className="text-white right-0 text-[14px] bg-red-600 h-[50px] hover:bg-opacity-80 bg-opacity-70 absolute rounded-md p-2 bottom-[5%] sm:right-10 z-20"
                 onClick={clearResponse}
             >
                 Clear Response
@@ -122,9 +122,9 @@ const Canvas = ({ brushColor, brushStroke, result, setResult, dictOfVars, reset,
 
             {/* Render the generated result */}
             {result && (
-                <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic top-[10vh] bottom-[20%] left-[5%] md:bottom-[30%] md:left-[3%] w-[200px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
-                    <h2>Expression: {result.expr}</h2>
-                    <h2>Result: {result.result}</h2>
+                <div style={{scrollbarWidth:"none"}} className="absolute font-thin italic top-[30vh] bottom-[20%] left-[5%] md:bottom-[30%] md:left-[3%] w-[200px] md:w-[300px] text-[14px] max-h-[400px] overflow-y-scroll text-white z-20">
+                    <h2>Expression: <br /> {result.expr}</h2>
+                    <h2>Result: <br /> {result.result}</h2>
                 </div>
             )}
         </div>
