@@ -11,7 +11,7 @@ const Toolbar = ({
 }) => {
   return (
     <div className="flex flex-col md:flex-row text-white p-1 gap-3 backdrop-blur-md absolute top-5 w-[80vw] left-[10%] z-50">
-      <div className="w-full sm:w-[300px] xl:w-1/2 p-3 rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap gap-4 md:flex-row">
+      <div className="w-full  xl:w-1/2 p-3 rounded-lg bg-gray-700 bg-opacity-20 justify-around flex flex-wrap gap-4 md:flex-row">
         {SWATCHES.map((item, index) => (
           <div
             onClick={() => {
@@ -19,8 +19,8 @@ const Toolbar = ({
               setBrushColor(item);
             }}
             key={index}
-            className={`md:w-[30px] w-[15px] h-[15px] cursor-pointer md:h-[30px] rounded-sm transition ease-in ${
-              brushColor === item ? " border-white rounded-[15px]" : ""
+            className={`md:w-[30px] h-[15px] w-[15px] xs:w-[25px]  xs:h-[25px] cursor-pointer md:h-[30px] transition ease-in ${
+              brushColor === item ? " border-white rounded-[15px]" : "rounded-sm "
             }`}
             style={{ backgroundColor: item }} // Set the background color
           ></div>
