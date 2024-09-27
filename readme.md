@@ -46,7 +46,7 @@ Follow these steps to set up the backend project and run it.
    python -m venv venv
 
 # Activate the virtual environment
-   \venv\Scripts\activate
+   venv\Scripts\activate
 
    pip install -r requirements.txt
 
