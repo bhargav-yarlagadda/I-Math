@@ -10,7 +10,7 @@ I-Math is a simple web application built using React.js and FastAPI. It serves a
 
 ## Technologies Used
 
-- **Frontend**: React.js
+- **Frontend**: React.js and tailwind css
 - **Backend**: FastAPI
 - **AI Integration**: Google Gemini Generative AI
 
