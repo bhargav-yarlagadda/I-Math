@@ -22,6 +22,11 @@ I-Math is a simple web application built using React.js and FastAPI. It serves a
 1. Clone the repository:
    ```bash
    git clone  https://github.com/bhargav-yarlagadda/IMath.git
+   ```
+2. add .env and include the folloing in your .env
+   ```bash
+   VITE_API_URL = "http://localhost:8900"
+   ``` 
    cd frontend
    npm install 
    npm run dev
@@ -34,12 +39,18 @@ I-Math is a simple web application built using React.js and FastAPI. It serves a
 
 Follow these steps to set up the backend project and run it.
 
+
 ### 1. Clone the Repository
-
-
 ```bash
 #move to backend directiory
     cd backend
+   ```
+   add .env to your backend folder
+   ```bash
+   VITE_API_URL = "http://localhost:8900"
+   GEMINI_API_KEY = "your key"
+   ```
+
 
 ### to run the server
 # Create a virtual environment named 'venv'
